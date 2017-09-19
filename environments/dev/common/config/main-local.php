@@ -3,9 +3,9 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=yii.toxic.pro',
+            'dsn' => 'mysql:host=localhost;dbname=db',
             'username' => 'root',
-            'password' => 'lqrs!18d7',
+            'password' => '',
             'charset' => 'utf8',
         ],
         'mailer' => [
