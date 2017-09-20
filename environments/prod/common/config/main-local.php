@@ -11,6 +11,9 @@ return [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
+            'messageConfig' => [
+                'from' => ['support1@example.com' => 'App Name robot']
+            ]
         ],
     ],
 ];
