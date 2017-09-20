@@ -2,18 +2,19 @@
 
 namespace frontend\services\auth;
 
+use Yii;
 use common\entities\User;
+use yii\mail\MailerInterface;
 use frontend\forms\PasswordResetRequestForm;
 use frontend\forms\ResetPasswordForm;
-use Yii;
 
 class PasswordResetService
 {
-    private $supportEmail;
+    private $mailer;
 
-    public function __construct($supportEmail)
+    public function __construct(MailerInterface $mailer)
     {
-        $this->supportEmail = $supportEmail;
+        $this->mailer = $mailer;
     }
 
     public function request(PasswordResetRequestForm $form): void
@@ -34,13 +35,11 @@ class PasswordResetService
             throw new \RuntimeException('Saving error.');
         }
 
-        $sent = Yii::$app
-            ->mailer
+        $sent = $this->mailer
             ->compose(
                 ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
                 ['user' => $user]
             )
-            ->setFrom($this->supportEmail)
             ->setTo($user->email)
             ->setSubject('Password reset for ' . Yii::$app->name)
             ->send();
@@ -63,9 +62,7 @@ class PasswordResetService
 
     public function reset(string $token, ResetPasswordForm $form): void
     {
-        $user = User::findByPasswordResetToken($token);
-
-        if (!$user) {
+        if (!$user = User::findByPasswordResetToken($token)) {
             throw new \DomainException('User is not found.');
         }
 

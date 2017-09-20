@@ -5,7 +5,8 @@ namespace common\bootstrap;
 use Yii;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
-use frontend\services\auth\PasswordResetService;
+use yii\mail\MailerInterface;
+use frontend\services\contact\ContactService;
 
 class SetUp implements  BootstrapInterface
 {
@@ -18,13 +19,19 @@ class SetUp implements  BootstrapInterface
         $container = Yii::$container;
 
         // Единоразовое создание сервиса с помощью контейнеров
-        $container->setSingleton(PasswordResetService::class, [], [
-            [$app->params['supportEmail'] => $app->name . ' robot']
-        ]);
-        // или так, на случай если нужно передать сложные большие данные
+//        $container->setSingleton(PasswordResetService::class);
+        // или анонимной функцией, на случай если нужно передать сложные большие данные
         // $container->setSingleton(PasswordResetService::class, function () use ($app) {
         //    return new PasswordResetService([$app->params['supportEmail'] => $app->name . ' robot']);
         // });
+
+        $container->setSingleton(MailerInterface::class, function () use ($app) {
+            return $app->mailer;
+        });
+
+        $container->setSingleton(ContactService::class, [], [
+            $app->params['adminEmail'],
+        ]);
 
     }
 }
