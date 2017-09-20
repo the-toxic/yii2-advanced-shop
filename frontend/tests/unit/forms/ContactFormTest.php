@@ -17,6 +17,6 @@ class ContactFormTest extends Unit
             'body' => 'body of current message',
         ];
 
-        expect_that($model->validate());
+        expect_that($model->validate(['name', 'email', 'subject', 'body']));
     }
 }

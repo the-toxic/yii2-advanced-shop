@@ -7,13 +7,13 @@ use yii\mail\MailerInterface;
 
 class ContactService
 {
-    private $mailer;
     private $adminEmail;
+    private $mailer;
 
     public function __construct($adminEmail, MailerInterface $mailer)
     {
-        $this->mailer = $mailer;
         $this->adminEmail = $adminEmail;
+        $this->mailer = $mailer;
     }
 
     public function send(ContactForm $form): void

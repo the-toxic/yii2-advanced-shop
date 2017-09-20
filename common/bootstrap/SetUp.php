@@ -5,6 +5,7 @@ namespace common\bootstrap;
 use Yii;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
+use yii\di\Instance;
 use yii\mail\MailerInterface;
 use frontend\services\contact\ContactService;
 
@@ -30,7 +31,7 @@ class SetUp implements  BootstrapInterface
         });
 
         $container->setSingleton(ContactService::class, [], [
-            $app->params['adminEmail'],
+            $app->params['adminEmail']
         ]);
 
     }
