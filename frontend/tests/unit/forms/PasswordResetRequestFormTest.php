@@ -1,13 +1,14 @@
 <?php
 
-namespace frontend\tests\unit\models;
+namespace frontend\tests\unit\forms;
 
+use Codeception\Test\Unit;
 use Yii;
-use frontend\models\PasswordResetRequestForm;
+use frontend\forms\PasswordResetRequestForm;
 use common\fixtures\UserFixture as UserFixture;
-use common\models\User;
+use common\entities\User;
 
-class PasswordResetRequestFormTest extends \Codeception\Test\Unit
+class PasswordResetRequestFormTest extends Unit
 {
     /**
      * @var \frontend\tests\UnitTester
