@@ -6,6 +6,14 @@ use common\entities\User;
 
 class UserRepository
 {
+    public function findByUsernameOrEmail($value): User
+    {
+        if (!$user = User::find()->andWhere(['or', ['username' => $value], ['email' => $value]])->one()) {
+            throw new \DomainException('User not found.');
+        }
+        return $user;
+    }
+
     public function getByEmailConfirmToken($token): User
     {
         return $this->getBy(['email_confirm_token' => $token]);
@@ -36,7 +44,7 @@ class UserRepository
     private function getBy(array $condition): User
     {
         if (!$user = User::find()->andWhere($condition)->limit(1)->one()) {
-            throw new \RuntimeException('User not found.');
+            throw new \DomainException('User not found.');
         }
         return $user;
     }
