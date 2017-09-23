@@ -5,8 +5,8 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\services\AuthService;
-use common\forms\LoginForm;
+use shop\services\auth\AuthService;
+use shop\forms\auth\LoginForm;
 
 /**
  * Site controller
