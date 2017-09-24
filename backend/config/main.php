@@ -24,13 +24,14 @@ return [
             'identityClass' => 'shop\entities\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-app', 'httpOnly' => true, 'domain' => $params['cookieDomain']],
+            'loginUrl' => ['auth/login'],
         ],
         'session' => [
             'name' => 'advanced-app',
             'cookieParams' => [
                 'domain' => $params['cookieDomain'],
                 'httpOnly' => true,
-            ]
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -52,7 +53,7 @@ return [
     ],
     'as access' => [
         'class' => 'yii\filters\AccessControl',
-        'except' => ['site/login', 'site/error'],
+        'except' => ['auth/login', 'site/error'],
         'rules' => [
             [
                 'allow' => true,

@@ -20,6 +20,7 @@ return [
             'identityClass' => 'shop\entities\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-app', 'httpOnly' => true, 'domain' => $params['cookieDomain']],
+            'loginUrl' => ['auth/auth/login'],
         ],
         'session' => [
             'name' => 'advanced-app',
