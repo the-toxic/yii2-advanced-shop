@@ -65,6 +65,20 @@ class User extends ActiveRecord implements IdentityInterface
         return $user;
     }
 
+    public function attachNetwork($network, $identity, $attributes): void
+    {
+        $networks = $this->networks;
+
+        foreach ($networks as $current) {
+            if ($current->isFor($network, $identity)) {
+                throw new \DomainException('Network is already attached.');
+            }
+        }
+        $networks[] = Network::create($network, $identity, $attributes);
+
+        $this->networks = $networks;
+    }
+
     public function requestPasswordReset(): void
     {
         if (!empty($this->password_reset_token) && self::isPasswordResetTokenValid($this->password_reset_token)) {
