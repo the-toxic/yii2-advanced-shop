@@ -6,12 +6,14 @@ use shop\entities\User\User;
 
 class UserRepository
 {
-    public function findByUsernameOrEmail($value): User
+    public function findByUsernameOrEmail($value): ?User
     {
-        if (!$user = User::find()->andWhere(['or', ['username' => $value], ['email' => $value]])->one()) {
-            throw new \DomainException('User not found.');
-        }
-        return $user;
+        return User::find()->andWhere(['or', ['username' => $value], ['email' => $value]])->one();
+    }
+
+    public function findByNetworkIdentity($network, $identity): ?User
+    {
+        return User::find()->joinWith('networks n')->andWhere(['n.network' => $network, 'n.identity' => $identity])->one();
     }
 
     public function getByEmailConfirmToken($token): User

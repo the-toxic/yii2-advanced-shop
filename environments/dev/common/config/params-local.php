@@ -1,5 +1,7 @@
 <?php
 return [
     'cookieValidationKey' => '',
-    'cookieDomain' => '.yii.dev',
+    'cookieDomain' => '.example.com',
+    'frontendHostInfo' => 'http://example.com',
+    'backendHostInfo' => 'http://backend.example.com',
 ];
