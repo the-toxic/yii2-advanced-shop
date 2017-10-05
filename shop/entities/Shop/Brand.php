@@ -17,7 +17,7 @@ class Brand extends ActiveRecord
     public function behaviors(): array
     {
         return [
-            MetaBehavior::className()
+            MetaBehavior::class
         ];
     }
 
