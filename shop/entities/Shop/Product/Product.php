@@ -10,7 +10,6 @@ use shop\entities\Shop\Category;
 use shop\entities\Shop\Tag;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
-use yii\db\Exception;
 use yii\web\UploadedFile;
 
 /**
@@ -37,6 +36,7 @@ use yii\web\UploadedFile;
  * @property Modification[] $modifications
  * @property Value[] $values
  * @property Photo[] $photos
+ * @property Photo $mainPhoto
  * @property Review[] $reviews
  */
 class Product extends ActiveRecord
@@ -498,10 +498,13 @@ class Product extends ActiveRecord
     {
         // Получаем связанные выше записи: фотографии
         $related = $this->getRelatedRecords();
+
+        // родит. метод обязат-но должен вызываться после получения связей и обновлением фото
+        parent::afterSave($insert, $changedAttributes);
+
         // Обновляем поле с фото в табл. товаров после сохранения фотографий
         if (array_key_exists('mainPhoto', $related)) {
             $this->updateAttributes(['main_photo_id' => $related['mainPhoto'] ? $related['mainPhoto']->id : null]);
         }
-        parent::afterSave($insert, $changedAttributes);
     }
 }

@@ -20,7 +20,6 @@ $this->title = $product->name;
 $this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="user-view">
 
     <p>
