@@ -34,6 +34,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'raw',
                     ],
                     [
+                        'attribute' => 'variants',
+                        'value' => function (Characteristic $model) {
+                            return implode(', ', $model->variants);
+                        },
+                    ],
+                    [
                         'attribute' => 'type',
                         'filter' => $searchModel->typesList(),
                         'value' => function (Characteristic $model) {

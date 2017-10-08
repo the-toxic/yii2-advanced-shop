@@ -26,14 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     [
-                        'attribute' => 'name',
-                        'value' => function (Category $model) {
-                            $indent = ($model->depth > 1 ? str_repeat('&nbsp;&nbsp;', $model->depth - 1) . ' ' : '');
-                            return $indent . Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
-                        },
-                        'format' => 'raw',
-                    ],
-                    [
                         'value' => function (Category $model) {
                             return
                                 Html::a('<span class="glyphicon glyphicon-arrow-up"></span>', ['move-up', 'id' => $model->id]) .
@@ -41,6 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         'format' => 'raw',
                         'contentOptions' => ['style' => 'text-align: center'],
+                    ],
+                    [
+                        'attribute' => 'name',
+                        'value' => function (Category $model) {
+                            $indent = ($model->depth > 1 ? str_repeat('&mdash;', $model->depth - 1) . ' ' : '');
+                            return $indent . Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
+                        },
+                        'format' => 'raw',
                     ],
                     'slug',
                     'title',
