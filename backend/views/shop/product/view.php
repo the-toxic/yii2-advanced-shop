@@ -79,6 +79,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-md-6">
 
+            <div class="box">
+                <div class="box-header with-border">Description</div>
+                <div class="box-body">
+                    <?= Yii::$app->formatter->asNtext($product->description) ?>
+                </div>
+            </div>
+
             <div class="box box-default">
                 <div class="box-header with-border">Characteristics</div>
                 <div class="box-body">
@@ -94,13 +101,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="box">
-        <div class="box-header with-border">Description</div>
-        <div class="box-body">
-            <?= Yii::$app->formatter->asNtext($product->description) ?>
+            <div class="box">
+                <div class="box-header with-border">SEO</div>
+                <div class="box-body">
+                    <?= DetailView::widget([
+                        'model' => $product,
+                        'attributes' => [
+                            [
+                                'attribute' => 'meta.title',
+                                'value' => $product->meta->title,
+                            ],
+                            [
+                                'attribute' => 'meta.description',
+                                'value' => $product->meta->description,
+                            ],
+                            [
+                                'attribute' => 'meta.keywords',
+                                'value' => $product->meta->keywords,
+                            ],
+                        ],
+                    ]) ?>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -128,29 +151,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ],
             ]); ?>
-        </div>
-    </div>
-
-    <div class="box">
-        <div class="box-header with-border">SEO</div>
-        <div class="box-body">
-            <?= DetailView::widget([
-                'model' => $product,
-                'attributes' => [
-                    [
-                        'attribute' => 'meta.title',
-                        'value' => $product->meta->title,
-                    ],
-                    [
-                        'attribute' => 'meta.description',
-                        'value' => $product->meta->description,
-                    ],
-                    [
-                        'attribute' => 'meta.keywords',
-                        'value' => $product->meta->keywords,
-                    ],
-                ],
-            ]) ?>
         </div>
     </div>
 

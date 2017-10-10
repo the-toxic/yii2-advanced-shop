@@ -35,6 +35,7 @@ class ProductEditForm extends CompositeForm
         $this->values = array_map(function (Characteristic $characteristic) use ($product) {
             return new ValueForm($characteristic, $product->getValue($characteristic->id));
         }, Characteristic::find()->orderBy('sort')->all());
+
         $this->_product = $product;
         parent::__construct($config);
     }

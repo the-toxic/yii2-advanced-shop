@@ -111,24 +111,32 @@ class ProductManageService
 
         $product->changeMainCategory($category->id);
 
-        $product->revokeCategories();
-
-        foreach ($form->categories->others as $otherId) {
-            $category = $this->categories->get($otherId);
-            $product->assignCategory($category->id);
-        }
-
-        foreach ($form->values as $value) {
-            $product->setValue($value->id, $value->value);
-        }
-
-        $product->revokeTags();
-        foreach ($form->tags->existing as $tagId) {
-            $tag = $this->tags->get($tagId);
-            $product->assignTag($tag->id);
-        }
-
+        // засовываем все в транзакцию
         $this->transaction->wrap(function () use ($product, $form) {
+
+            // очищаем связи товара и сохраняем товар
+            $product->revokeCategories();
+            $product->revokeTags();
+            $this->products->save($product);
+
+            // создаем новые связи и сохраняем товар
+            foreach ($form->categories->others as $otherId) {
+                $category = $this->categories->get($otherId);
+                $product->assignCategory($category->id);
+            }
+
+            // values
+            foreach ($form->values as $value) {
+                $product->setValue($value->id, $value->value);
+            }
+
+            // tags (existed)
+            foreach ($form->tags->existing as $tagId) {
+                $tag = $this->tags->get($tagId);
+                $product->assignTag($tag->id);
+            }
+
+            // tags (new)
             foreach ($form->tags->newNames as $tagName) {
                 if (!$tag = $this->tags->findByName($tagName)) {
                     $tag = Tag::create($tagName, $tagName);
@@ -136,6 +144,7 @@ class ProductManageService
                 }
                 $product->assignTag($tag->id);
             }
+
             $this->products->save($product);
         });
     }

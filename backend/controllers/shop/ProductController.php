@@ -72,7 +72,6 @@ class ProductController extends Controller
         ]);
 
         $photosForm = new PhotosForm();
-
         if ($photosForm->load(Yii::$app->request->post()) && $photosForm->validate()) {
             try {
                 $this->service->addPhotos($product->id, $photosForm);
