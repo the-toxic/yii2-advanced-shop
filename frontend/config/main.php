@@ -13,11 +13,13 @@ return [
     'bootstrap' => [
         'log',
         'common\bootstrap\SetUp',
+        'frontend\bootstrap\SetUp',
     ],
     'aliases' => [
         '@staticRoot' => $params['staticPath'],
         '@static'   => $params['staticHostInfo'],
     ],
+    'layout' => 'blank',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
