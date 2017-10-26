@@ -3,8 +3,6 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-\frontend\assets\OwlCarouselAsset::register($this);
-
 ?>
 <?php $this->beginContent('@frontend/views/layouts/main.php') ?>
 
