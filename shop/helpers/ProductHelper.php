@@ -25,7 +25,7 @@ class ProductHelper
     {
         switch ($status) {
             case Product::STATUS_DRAFT:
-                $class = 'label label-default';
+                $class = 'label label-danger';
                 break;
             case Product::STATUS_ACTIVE:
                 $class = 'label label-success';
