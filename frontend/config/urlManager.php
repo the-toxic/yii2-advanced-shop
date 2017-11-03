@@ -15,6 +15,12 @@ return [
         'signup/<_a:[\w-]+>' => 'auth/signup/<_a>',
         '<_a:login|logout>' => 'auth/auth/<_a>',
 
+        'blog' => 'blog/post/index',
+        'blog/tag/<slug:[\w\-]+>' => 'blog/post/tag',
+        'blog/<id:\d+>' => 'blog/post/post',
+        'blog/<id:\d+>/comment' => 'blog/post/comment',
+        'blog/<slug:[\w\-]+>' => 'blog/post/category',
+
         'catalog' => 'shop/catalog/index',
 
         'cabinet' => 'cabinet/default/index',
