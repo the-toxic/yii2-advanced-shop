@@ -21,7 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     'id',
-                    'created_at:datetime',
+                    [
+                        'attribute' => 'created_at',
+                        'format' => ['date', 'dd.MM.YYYY HH:mm:ss'],
+                    ],
                     [
                         'attribute' => 'text',
                         'value' => function (Comment $model) {

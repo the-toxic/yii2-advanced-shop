@@ -21,17 +21,18 @@ class CommentController extends Controller
         $this->service = $service;
     }
 
-    public function behaviors(): array
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+    // Для возможности удалять комменты с фронтенда гетом
+//    public function behaviors(): array
+//    {
+//        return [
+//            'verbs' => [
+//                'class' => VerbFilter::className(),
+//                'actions' => [
+//                    'delete' => ['POST'],
+//                ],
+//            ],
+//        ];
+//    }
 
     /**
      * @return mixed
@@ -119,7 +120,7 @@ class CommentController extends Controller
         } catch (\DomainException $e) {
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
-        return $this->redirect(['index']);
+        return $this->redirect(Yii::$app->request->referrer ?: ['index']);
     }
 
     /**

@@ -204,7 +204,6 @@ AppAsset::register($this);
                 ['label' => 'Home', 'url' => ['/site/index']],
                 ['label' => 'Catalog', 'url' => ['/shop/catalog/index']],
                 ['label' => 'Blog', 'url' => ['/blog/post/index']],
-                ['label' => 'About', 'url' => ['/site/about']],
                 ['label' => 'Contact', 'url' => ['/contact/index']],
             ],
         ]);
@@ -224,14 +223,9 @@ AppAsset::register($this);
                 <div class="col-sm-3">
                     <h5>Information</h5>
                     <ul class="list-unstyled">
-                        <li><a href="/index.php?route=information/information&amp;information_id=4">About
-                                Us</a></li>
-                        <li><a href="/index.php?route=information/information&amp;information_id=6">Delivery
-                                Information</a></li>
-                        <li><a href="/index.php?route=information/information&amp;information_id=3">Privacy
-                                Policy</a></li>
-                        <li><a href="/index.php?route=information/information&amp;information_id=5">Terms
-                                &amp; Conditions</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/privacy_policy">Privacy Policy</a></li>
+                        <li><a href="/terms_of_service">Terms of Service</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-3">

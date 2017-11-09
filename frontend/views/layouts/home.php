@@ -3,6 +3,8 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use frontend\widgets\Blog\LastPostsWidget;
+
 ?>
 <?php $this->beginContent('@frontend/views/layouts/main.php') ?>
 
@@ -132,6 +134,13 @@
                     </div>
                 </div>
             </div>
+
+            <h3>Last Posts</h3>
+
+            <?= LastPostsWidget::widget([
+                'limit' => 4,
+            ]) ?>
+
             <div id="carousel0" class="owl-carousel">
                 <div class="item text-center">
                     <img src="http://static.toxic.pro/cache/manufacturers/nfl-130x100.png" alt="NFL"

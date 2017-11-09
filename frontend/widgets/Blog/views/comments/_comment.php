@@ -1,6 +1,8 @@
 <?php
-
 /* @var $item \frontend\widgets\Blog\CommentView */
+
+use yii\helpers\Html;
+
 ?>
 
 <div class="comment-item" data-id="<?= $item->comment->id ?>">
@@ -19,6 +21,11 @@
                 </div>
                 <div class="pull-right">
                     <span class="comment-reply">Reply</span>
+                    <?php if(Yii::$app->getUser()->getId() === 2): ?>
+                        <?= Html::a('<i class="fa fa-close text-danger"></i>', Yii::$app->backendUrlManager->createAbsoluteUrl(
+                            ['blog/comment/delete', 'post_id' => $item->comment->post_id, 'id' => $item->comment->id]
+                        ), ['data' => ['confirm' => 'Are you sure you want to delete this item?']]) ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
