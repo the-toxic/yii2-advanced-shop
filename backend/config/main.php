@@ -31,7 +31,7 @@ return [
             'loginUrl' => ['auth/login'],
         ],
         'session' => [
-            'name' => 'advanced-app',
+            'name' => '_session',
             'cookieParams' => [
                 'domain' => $params['cookieDomain'],
                 'httpOnly' => true,
@@ -43,6 +43,7 @@ return [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                    'logVars' => ['_GET', '_POST', '_FILES'], // $_SERVER, $_GET, $_POST, $_FILES, $_COOKIE, $_SESSION
                 ],
             ],
         ],

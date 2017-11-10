@@ -1,5 +1,6 @@
 <?php
 
+use mihaildev\ckeditor\CKEditor;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -27,7 +28,7 @@ use yii\widgets\ActiveForm;
         <div class="box-header with-border">SEO</div>
         <div class="box-body">
             <?= $form->field($model->meta, 'title')->textInput() ?>
-            <?= $form->field($model->meta, 'description')->textarea(['rows' => 2]) ?>
+            <?= $form->field($model->meta, 'description')->widget(CKEditor::className()) ?>
             <?= $form->field($model->meta, 'keywords')->textInput() ?>
         </div>
     </div>

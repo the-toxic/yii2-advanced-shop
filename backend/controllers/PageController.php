@@ -90,6 +90,7 @@ class PageController extends Controller
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
                 $this->service->edit($page->id, $form);
+                Yii::$app->cache->delete(['page', $page->id]);
                 return $this->redirect(['view', 'id' => $page->id]);
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);

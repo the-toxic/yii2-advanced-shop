@@ -31,6 +31,7 @@ class SetUp implements  BootstrapInterface
             return $app->mailer;
         });
 
+        // pageUrlRule требует это
         $container->setSingleton(Cache::class, function () use ($app) {
             return $app->cache;
         });
