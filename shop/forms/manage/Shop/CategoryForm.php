@@ -49,7 +49,7 @@ class CategoryForm extends CompositeForm
         ];
     }
 
-    public function parentCategoriesList(): array
+    public function parentsList(): array
     {
         return ArrayHelper::map(Category::find()->orderBy('lft')->asArray()->all(), 'id', function (array $category) {
             return ($category['depth'] > 1 ? str_repeat('— ', $category['depth'] - 1) . ' ' : '') . $category['name'];

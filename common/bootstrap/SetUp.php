@@ -18,7 +18,9 @@ class SetUp implements  BootstrapInterface
      */
     public function bootstrap($app)
     {
+        // Контейнер внедрения зависимостей
         $container = Yii::$container;
+        // Позволяет внедрить в объект (только в момент его вызова откуда-либо) нужные параметры
 
         // Единоразовое создание сервиса с помощью контейнеров
 //        $container->setSingleton(PasswordResetService::class);

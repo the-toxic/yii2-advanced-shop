@@ -16,11 +16,12 @@ use yii\widgets\ActiveForm;
     <div class="box box-default">
         <div class="box-header with-border">Common</div>
         <div class="box-body">
-            <?= $form->field($model, 'parentId')->dropDownList($model->parentCategoriesList()) ?>
+            <?= $form->field($model, 'parentId')->dropDownList(
+                $model->parentsList(), ['options' => [Yii::$app->request->get('id') => ['disabled' => true]]]
+            ) ?>
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
         </div>
     </div>
 
