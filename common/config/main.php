@@ -22,5 +22,12 @@ return [
             'class' => 'yii\caching\MemCache',
             'useMemcached' => true
         ],
+        'authManager' => [
+            'class' => 'common\rbac\PhpManager', // переопределенный класс
+            'roleParam' => 'role', // название колонки в табл. users
+            'itemFile' => '@common/rbac/items.php',
+            'assignmentFile' => '@common/rbac/assignments.php', // не использ.
+            'ruleFile' => '@common/rbac/rules.php',
+        ],
     ],
 ];

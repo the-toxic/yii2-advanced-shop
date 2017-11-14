@@ -2,6 +2,7 @@
 namespace shop\entities\User;
 
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
+use common\rbac\Roles;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -14,6 +15,7 @@ use yii\web\IdentityInterface;
  *
  * @property integer $id
  * @property string $username
+ * @property string $role
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email_confirm_token
@@ -31,10 +33,11 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_WAIT = 0;
     const STATUS_ACTIVE = 10;
 
-    public static function create(string $username, string $email, string $password): self
+    public static function create(string $username, string $email, string $password, string $role): self
     {
         $user = new User();
         $user->username = $username;
+        $user->role = $role;
         $user->email = $email;
         $user->setPassword(!empty($password) ? $password : Yii::$app->security->generateRandomString());
         $user->created_at = time();
@@ -43,9 +46,10 @@ class User extends ActiveRecord implements IdentityInterface
         return $user;
     }
 
-    public function edit(string $username, string $email): void
+    public function edit(string $username, string $email, string $role): void
     {
         $this->username = $username;
+        $this->role = $role;
         $this->email = $email;
         $this->updated_at = time();
     }
@@ -58,6 +62,7 @@ class User extends ActiveRecord implements IdentityInterface
         $user->setPassword($password);
         $user->created_at = time();
         $user->status = self::STATUS_WAIT;
+        $user->role = Roles::ROLE_USER;
         $user->email_confirm_token = Yii::$app->security->generateRandomString();
         $user->generateAuthKey();
         return $user;
@@ -75,6 +80,7 @@ class User extends ActiveRecord implements IdentityInterface
     public static function signupByNetwork($network, $identity, $attributes): self
     {
         $user = new User();
+        $user->role = Roles::ROLE_USER;
         $user->created_at = time();
         $user->status = self::STATUS_ACTIVE;
         $user->generateAuthKey();

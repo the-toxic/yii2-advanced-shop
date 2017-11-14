@@ -1,4 +1,6 @@
 <?php
+
+use dmstr\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
@@ -50,6 +52,7 @@ $fieldOptions2 = [
             <!-- /.col -->
         </div>
 
+        <?= Alert::widget() ?>
 
         <?php ActiveForm::end(); ?>
 

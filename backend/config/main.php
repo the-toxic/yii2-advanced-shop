@@ -80,13 +80,22 @@ return [
     ],
     'as access' => [
         'class' => 'yii\filters\AccessControl',
-        'except' => ['auth/login', 'site/error'],
+        'except' => ['auth/login', 'auth/logout', 'site/error'],
         'rules' => [
             [
                 'allow' => true,
-                'roles' => ['@']
+                'roles' => ['accessBackend']
             ]
-        ]
+        ],
+        'denyCallback' => function ($rule, $action) {
+            if(Yii::$app->getUser()->isGuest) {
+                Yii::$app->user->loginRequired();
+            } else {
+                Yii::$app->user->logout();
+                Yii::$app->getResponse()->redirect('/');
+            }
+//            throw new \Exception('У вас нет доступа к этой странице');
+        }
     ],
     'params' => $params,
 ];
