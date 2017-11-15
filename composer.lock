@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e83c927d826cc209f1cce6bed5fdbb98",
+    "content-hash": "4fbc4f5eac0f53fd33c33996312b455c",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -417,46 +417,6 @@
             "time": "2017-06-03T02:28:16+00:00"
         },
         {
-            "name": "fishvision/yii2-migrate",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fishvision/yii2-migrate.git",
-                "reference": "9bf914bcbac5e71318079a50597e5d29bc42ac5a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fishvision/yii2-migrate/zipball/9bf914bcbac5e71318079a50597e5d29bc42ac5a",
-                "reference": "9bf914bcbac5e71318079a50597e5d29bc42ac5a",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "fishvision\\migrate\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alex Berriman",
-                    "email": "alexb@fishvision.com"
-                }
-            ],
-            "description": "Extended migration support",
-            "keywords": [
-                "extension",
-                "yii2"
-            ],
-            "time": "2017-06-08T01:59:47+00:00"
-        },
-        {
             "name": "fortawesome/font-awesome",
             "version": "v4.7.0",
             "source": {
@@ -510,12 +470,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "fc3f1dca0fda0a201bdb701ba802f898916933e1"
+                "reference": "0014931de1fd466f3901efcb45198c985d999c3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/fc3f1dca0fda0a201bdb701ba802f898916933e1",
-                "reference": "fc3f1dca0fda0a201bdb701ba802f898916933e1",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/0014931de1fd466f3901efcb45198c985d999c3d",
+                "reference": "0014931de1fd466f3901efcb45198c985d999c3d",
                 "shasum": ""
             },
             "type": "library",
@@ -555,7 +515,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2017-11-09T04:46:42+00:00"
+            "time": "2017-11-13T13:37:26+00:00"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -2101,12 +2061,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "27c6c48f12fb1c27a4edee430f55b8ccab0716c8"
+                "reference": "eb9432621025fbe091d8b639dd8a9e3ffb32da20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Studio-42/elFinder/zipball/27c6c48f12fb1c27a4edee430f55b8ccab0716c8",
-                "reference": "27c6c48f12fb1c27a4edee430f55b8ccab0716c8",
+                "url": "https://api.github.com/repos/Studio-42/elFinder/zipball/eb9432621025fbe091d8b639dd8a9e3ffb32da20",
+                "reference": "eb9432621025fbe091d8b639dd8a9e3ffb32da20",
                 "shasum": ""
             },
             "require": {
@@ -2151,7 +2111,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2017-11-10T11:40:31+00:00"
+            "time": "2017-11-14T17:30:18+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2258,6 +2218,49 @@
             "time": "2016-11-23T20:04:41+00:00"
         },
         {
+            "name": "wokster/yii2-translation-manager",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wokster/yii2-translation-manager.git",
+                "reference": "c5f1294ba717b3f70df062cf63a50a8249194df2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wokster/yii2-translation-manager/zipball/c5f1294ba717b3f70df062cf63a50a8249194df2",
+                "reference": "c5f1294ba717b3f70df062cf63a50a8249194df2",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": ">=2.0.6"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "wokster\\translationmanager\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Maksym Tymofeiev",
+                    "email": "wokster@list.ru"
+                }
+            ],
+            "description": "CRUD for storage and editing of translations in a database. Works with a common Yii2 solution (yii i18n DbMessageSource)",
+            "keywords": [
+                "db",
+                "extension",
+                "manager",
+                "translation",
+                "yii2"
+            ],
+            "time": "2016-09-07T19:16:15+00:00"
+        },
+        {
             "name": "yii-dream-team/yii2-upload-behavior",
             "version": "1.2.3",
             "source": {
@@ -2312,12 +2315,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "bf2571825dafaaf9e61fbf2f9fd4e28812817933"
+                "reference": "7b9cc001ee115cb80c1ccdb00173cb1f1c9387dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/bf2571825dafaaf9e61fbf2f9fd4e28812817933",
-                "reference": "bf2571825dafaaf9e61fbf2f9fd4e28812817933",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/7b9cc001ee115cb80c1ccdb00173cb1f1c9387dc",
+                "reference": "7b9cc001ee115cb80c1ccdb00173cb1f1c9387dc",
                 "shasum": ""
             },
             "require": {
@@ -2404,7 +2407,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2017-11-07T16:20:14+00:00"
+            "time": "2017-11-14T21:49:40+00:00"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -2963,12 +2966,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "65dcf63a3095cb6cd0bbb812f25b0d4f6c1c53c0"
+                "reference": "9cda1a418ca4b2b71c9b921ebaea6c2e61e270b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/65dcf63a3095cb6cd0bbb812f25b0d4f6c1c53c0",
-                "reference": "65dcf63a3095cb6cd0bbb812f25b0d4f6c1c53c0",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/9cda1a418ca4b2b71c9b921ebaea6c2e61e270b4",
+                "reference": "9cda1a418ca4b2b71c9b921ebaea6c2e61e270b4",
                 "shasum": ""
             },
             "require": {
@@ -3005,7 +3008,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2017-11-10T15:58:07+00:00"
+            "time": "2017-11-13T07:51:09+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -3719,12 +3722,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "0a858ae76c06449751e5a61c1e0e97191a0f3fd2"
+                "reference": "466b461f86c49a957c31bb0fbe0863eac0d9c64d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0a858ae76c06449751e5a61c1e0e97191a0f3fd2",
-                "reference": "0a858ae76c06449751e5a61c1e0e97191a0f3fd2",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/466b461f86c49a957c31bb0fbe0863eac0d9c64d",
+                "reference": "466b461f86c49a957c31bb0fbe0863eac0d9c64d",
                 "shasum": ""
             },
             "require": {
@@ -3795,7 +3798,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-11-10T09:18:26+00:00"
+            "time": "2017-11-14T15:20:39+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4620,12 +4623,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "a2e7a0bb621a55647877608ae202175086444595"
+                "reference": "0f859c42d6b557fdac74754c9823170765ae3872"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/a2e7a0bb621a55647877608ae202175086444595",
-                "reference": "a2e7a0bb621a55647877608ae202175086444595",
+                "url": "https://api.github.com/repos/symfony/console/zipball/0f859c42d6b557fdac74754c9823170765ae3872",
+                "reference": "0f859c42d6b557fdac74754c9823170765ae3872",
                 "shasum": ""
             },
             "require": {
@@ -4681,7 +4684,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-07T14:20:24+00:00"
+            "time": "2017-11-12T16:53:54+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -4742,12 +4745,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "d61d1eb839d4f741745f32af6b7d0608fd53c25a"
+                "reference": "92697a71cd55c5852d0f19cd80e7fb6d1eb12b88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/d61d1eb839d4f741745f32af6b7d0608fd53c25a",
-                "reference": "d61d1eb839d4f741745f32af6b7d0608fd53c25a",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/92697a71cd55c5852d0f19cd80e7fb6d1eb12b88",
+                "reference": "92697a71cd55c5852d0f19cd80e7fb6d1eb12b88",
                 "shasum": ""
             },
             "require": {
@@ -4790,7 +4793,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-07T14:45:01+00:00"
+            "time": "2017-11-12T16:47:31+00:00"
         },
         {
             "name": "symfony/dom-crawler",
@@ -5025,12 +5028,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "e99024f324a7fa927c3a7992ed6f359e3a5ccc3b"
+                "reference": "14568820af0af65e8ae97c3999b58cc94ea408bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/e99024f324a7fa927c3a7992ed6f359e3a5ccc3b",
-                "reference": "e99024f324a7fa927c3a7992ed6f359e3a5ccc3b",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/14568820af0af65e8ae97c3999b58cc94ea408bf",
+                "reference": "14568820af0af65e8ae97c3999b58cc94ea408bf",
                 "shasum": ""
             },
             "require": {
@@ -5075,7 +5078,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-09T14:52:13+00:00"
+            "time": "2017-11-10T19:03:56+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -5267,7 +5270,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "wokster/yii2-translation-manager": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

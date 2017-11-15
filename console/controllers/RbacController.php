@@ -30,6 +30,10 @@ class RbacController extends Controller
         $auth->addChild($admin, $user);
         $auth->addChild($admin, $accessBackend);
 
+        // После изменения ролей и прав необходимо в консоли выполнить
+        // ./yii rbac/init и файлик /common/rbac/items.php пересоберется
+        // Так-же при добавлении ролей не забыть добавить их в /common/rbac/Roles.php
+
     }
 
     // Переписан стандартный функционал RBAC

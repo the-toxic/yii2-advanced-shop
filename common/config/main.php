@@ -29,5 +29,10 @@ return [
             'assignmentFile' => '@common/rbac/assignments.php', // не использ.
             'ruleFile' => '@common/rbac/rules.php',
         ],
+        'assetManager' => [
+            // ссылки из vendor на ассеты в /backend[frontend]/web/assets/
+            // заместо перекачивания файлов из vendor-a
+            'linkAssets' => true,
+        ],
     ],
 ];

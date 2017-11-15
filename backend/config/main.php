@@ -19,7 +19,12 @@ return [
         '@staticRoot' => $params['staticPath'],
         '@static'   => $params['staticHostInfo'],
     ],
-    'modules' => [],
+    'modules' => [
+        'translate-manager' => [ // /translate-manager/default page
+            'class' => 'wokster\translationmanager\TranslationManager',
+            'languages' => ['en'],
+        ],
+    ],
     'controllerMap' => [
         'elfinder' => [
             'class' => 'mihaildev\elfinder\Controller',

@@ -47,6 +47,7 @@
                     ['label' => 'Страницы', 'icon' => 'file-o', 'url' => ['/page/index'], 'active' => $this->context->id == 'page'],
                     ['label' => 'Файлы', 'icon' => 'file-o', 'url' => ['/file/index'], 'active' => $this->context->id == 'file'],
                     ['label' => 'Пользователи', 'icon' => 'user', 'url' => ['/user/index'], 'active' => $this->context->id == 'user'],
+                    ['label' => 'Переводчик', 'icon' => 'file-o', 'url' => ['/translate-manager/default'], 'active' => $this->context->id == 'translate-manager/default'],
                 ],
             ]
         ) ?>
