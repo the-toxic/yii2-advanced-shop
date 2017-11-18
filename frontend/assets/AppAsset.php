@@ -21,6 +21,7 @@ class AppAsset extends AssetBundle
     ];
 
     public $depends = [
+        'frontend\assets\IESupportAsset',
         'frontend\assets\FontAwesomeAsset',
         'frontend\assets\OwlCarouselAsset',
         'yii\web\YiiAsset',

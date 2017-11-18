@@ -13,6 +13,7 @@ class UserHelper
         return [
             User::STATUS_WAIT => 'Wait',
             User::STATUS_ACTIVE => 'Active',
+            User::STATUS_BLOCKED => 'Blocked',
         ];
     }
 

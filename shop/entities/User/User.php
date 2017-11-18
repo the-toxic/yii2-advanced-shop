@@ -31,6 +31,7 @@ use yii\web\IdentityInterface;
 class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_WAIT = 0;
+    const STATUS_BLOCKED = -1;
     const STATUS_ACTIVE = 10;
 
     public static function create(string $username, string $email, string $password, string $role): self
@@ -129,6 +130,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function isWait(): bool
     {
         return $this->status === self::STATUS_WAIT;
+    }
+
+    public function isBlocked(): bool
+    {
+        return $this->status === self::STATUS_BLOCKED;
     }
 
     public function getNetworks(): ActiveQuery
