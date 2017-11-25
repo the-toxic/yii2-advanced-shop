@@ -3,6 +3,8 @@
 namespace shop\repositories\Shop;
 
 use shop\entities\Shop\Category;
+use Yii;
+use yii\caching\TagDependency;
 
 class CategoryRepository
 {
@@ -19,6 +21,7 @@ class CategoryRepository
         if (!$category->save()) {
             throw new \RuntimeException('Saving error.');
         }
+        TagDependency::invalidate(Yii::$app->cache, 'categoryUrlRoute');
     }
 
     public function remove(Category $category): void

@@ -104,12 +104,14 @@ AppAsset::register($this);
                     </div>
                 </div>
                 <div class="col-sm-5">
+                    <?= Html::beginForm(['/shop/catalog/search'], 'get') ?>
                     <div id="search" class="input-group">
-                        <input type="text" name="search" value="" placeholder="Search" class="form-control input-lg"/>
+                        <input type="text" name="text" value="" placeholder="Search" class="form-control input-lg"/>
                         <span class="input-group-btn">
-    <button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
-  </span>
+                            <button type="submit" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
+                        </span>
                     </div>
+                    <?= Html::endForm() ?>
                 </div>
                 <div class="col-sm-3">
                     <div id="cart" class="btn-group btn-block">
@@ -223,35 +225,35 @@ AppAsset::register($this);
                 <div class="col-sm-3">
                     <h5>Information</h5>
                     <ul class="list-unstyled">
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/privacy_policy">Privacy Policy</a></li>
-                        <li><a href="/terms_of_service">Terms of Service</a></li>
+                        <li><a href="/about">О нас</a></li>
+                        <li><a href="/privacy-policy">Политика конфиденциальности</a></li>
+                        <li><a href="/terms-of-service">Условия использования</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
                     <h5>Customer Service</h5>
                     <ul class="list-unstyled">
-                        <li><a href="/index.php?route=information/contact">Contact Us</a></li>
-                        <li><a href="/index.php?route=account/return/add">Returns</a></li>
-                        <li><a href="/index.php?route=information/sitemap">Site Map</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Site Map</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
                     <h5>Extras</h5>
                     <ul class="list-unstyled">
-                        <li><a href="/index.php?route=product/manufacturer">Brands</a></li>
-                        <li><a href="/index.php?route=account/voucher">Gift Certificates</a></li>
-                        <li><a href="/index.php?route=affiliate/account">Affiliates</a></li>
-                        <li><a href="/index.php?route=product/special">Specials</a></li>
+                        <li><a href="#">Brands</a></li>
+                        <li><a href="#">Gift Certificates</a></li>
+                        <li><a href="#">Affiliates</a></li>
+                        <li><a href="#">Specials</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
                     <h5>My Account</h5>
                     <ul class="list-unstyled">
-                        <li><a href="/index.php?route=account/account">My Account</a></li>
-                        <li><a href="/index.php?route=account/order">Order History</a></li>
-                        <li><a href="/index.php?route=account/wishlist">Wish List</a></li>
-                        <li><a href="/index.php?route=account/newsletter">Newsletter</a></li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Order History</a></li>
+                        <li><a href="#">Wish List</a></li>
+                        <li><a href="#">Newsletter</a></li>
                     </ul>
                 </div>
             </div>

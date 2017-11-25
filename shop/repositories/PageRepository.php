@@ -3,6 +3,8 @@
 namespace shop\repositories;
 
 use shop\entities\Page;
+use Yii;
+use yii\caching\TagDependency;
 
 class PageRepository
 {
@@ -19,6 +21,7 @@ class PageRepository
         if (!$page->save()) {
             throw new \RuntimeException('Saving error.');
         }
+        TagDependency::invalidate(Yii::$app->cache, 'pageUrlRoute');
     }
 
     public function remove(Page $page): void

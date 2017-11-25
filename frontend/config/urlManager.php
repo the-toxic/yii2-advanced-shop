@@ -7,7 +7,7 @@ return [
     'hostInfo' => $params['frontendHostInfo'],
     'enablePrettyUrl' => true,
     'showScriptName' => false,
-    'cache' => false,
+    'cache' => true,
     'rules' => [
         '' => 'site/index',
         'contact' => 'contact/index',
@@ -22,6 +22,7 @@ return [
         'blog/<slug:[\w\-]+>' => 'blog/post/category',
 
         'catalog' => 'shop/catalog/index',
+        ['class' => 'frontend\urls\CategoryUrlRule'],
         'catalog/<id:\d+>' => 'shop/catalog/product',
 
         'cabinet' => 'cabinet/default/index',

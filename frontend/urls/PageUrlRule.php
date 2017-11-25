@@ -7,6 +7,7 @@ use shop\readModels\PageReadRepository;
 use yii\base\InvalidParamException;
 use yii\base\BaseObject;
 use yii\caching\Cache;
+use yii\caching\TagDependency;
 use yii\helpers\ArrayHelper;
 use yii\web\UrlNormalizerRedirectException;
 use yii\web\UrlRuleInterface;
@@ -32,7 +33,7 @@ class PageUrlRule extends BaseObject implements UrlRuleInterface
                 return ['id' => null, 'path' => null];
             }
             return ['id' => $page->id, 'path' => $this->getPagePath($page)];
-        });
+        }, null, new TagDependency(['tags' => 'pageUrlRoute']));
 
         if (empty($result['id'])) {
             return false;
@@ -58,7 +59,7 @@ class PageUrlRule extends BaseObject implements UrlRuleInterface
                     return null;
                 }
                 return $this->getPagePath($page);
-            });
+            }, null, new TagDependency(['tags' => 'pageUrlRoute']));
 
             if (!$url) {
                 throw new InvalidParamException('Undefined id.');
