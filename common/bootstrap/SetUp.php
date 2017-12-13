@@ -3,6 +3,8 @@
 namespace common\bootstrap;
 
 use Yii;
+use Elasticsearch\Client;
+use Elasticsearch\ClientBuilder;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
 use yii\caching\Cache;
@@ -28,6 +30,10 @@ class SetUp implements  BootstrapInterface
         // $container->setSingleton(PasswordResetService::class, function () use ($app) {
         //    return new PasswordResetService([$app->params['supportEmail'] => $app->name . ' robot']);
         // });
+
+        $container->setSingleton(Client::class, function () {
+            return ClientBuilder::create()->build();
+        });
 
         $container->setSingleton(MailerInterface::class, function () use ($app) {
             return $app->mailer;
