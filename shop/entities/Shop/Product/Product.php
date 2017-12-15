@@ -8,6 +8,7 @@ use shop\entities\Meta;
 use shop\entities\Shop\Brand;
 use shop\entities\Shop\Category;
 use shop\entities\Shop\Tag;
+use shop\entities\User\WishlistItem;
 use shop\entities\Shop\Product\queries\ProductQuery;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
@@ -494,6 +495,11 @@ class Product extends ActiveRecord
     public function getReviews(): ActiveQuery
     {
         return $this->hasMany(Review::class, ['product_id' => 'id']);
+    }
+
+    public function getWishlistItems(): ActiveQuery
+    {
+        return $this->hasMany(WishlistItem::class, ['product_id' => 'id']);
     }
 
     ##########################
