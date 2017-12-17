@@ -32,10 +32,14 @@ $url = Url::to(['product', 'id' =>$product->id]);
                 </p>
             </div>
             <div class="button-group">
-                <button type="button" onclick="cart.add('<?= $product->id ?>', '2');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span></button>
+                <!--<button type="button" onclick="cart.add('<?/*= $product->id */?>//', '2');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">В корзину</span></button>-->
+                <button type="button" href="<?= Url::to(['/shop/cart/add', 'id' => $product->id]) ?>" data-method="post">
+                    <i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">В корзину</span>
+                </button>
                 <!--<button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('<?/*//= $product->id */?>');"><i class="fa fa-heart"></i></button>-->
                 <button type="button" data-toggle="tooltip" title="Add to Wish List" data-method="post"
-                    href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>"><i class="fa fa-heart"></i></button>
+                    href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>"><i class="fa fa-heart"></i>
+                </button>
                 <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('<?= $product->id ?>');"><i class="fa fa-exchange"></i></button>
             </div>
         </div>

@@ -105,7 +105,8 @@ MagnificPopupAsset::register($this);
     <div class="col-sm-4">
         <p class="btn-group">
             <button type="button" data-toggle="tooltip" class="btn btn-default" title="Add to Wish List" data-method="post"
-                href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>"><i class="fa fa-heart"></i></button>
+                href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>"><i class="fa fa-heart"></i>
+            </button>
             <button type="button" data-toggle="tooltip" class="btn btn-default" title="Compare this Product" onclick="compare.add('47');"><i class="fa fa-exchange"></i></button>
         </p>
         <h1><?= Html::encode($product->name) ?></h1>
@@ -128,9 +129,12 @@ MagnificPopupAsset::register($this);
             <hr>
             <h3>Available Options</h3>
 
-            <?php $form = ActiveForm::begin() ?>
+            <?php $form = ActiveForm::begin(['action' => ['/shop/cart/add', 'id' => $product->id]]) ?>
 
-            <?= $form->field($cartForm, 'modification')->dropDownList($cartForm->modificationsList(), ['prompt' => '--- Select ---']) ?>
+            <?php if ($modifications = $cartForm->modificationsList()): ?>
+                <?= $form->field($cartForm, 'modification')->dropDownList($modifications, ['prompt' => '--- Select ---']) ?>
+            <?php endif; ?>
+
             <?= $form->field($cartForm, 'quantity')->textInput() ?>
 
             <div class="form-group">
