@@ -2,6 +2,8 @@
 
 namespace common\bootstrap;
 
+use shop\cart\cost\calculator\DynamicCost;
+use shop\cart\storage\CookieStorage;
 use Yii;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
@@ -53,8 +55,10 @@ class SetUp implements  BootstrapInterface
 
         $container->setSingleton(Cart::class, function () {
             return new Cart(
-                new SessionStorage('cart', \Yii::$app->session),
-                new SimpleCost()
+//                new SessionStorage('cart', \Yii::$app->session),
+                new CookieStorage('cart', 3600),
+//                new SimpleCost()
+                new DynamicCost(new SimpleCost())
             );
         });
 

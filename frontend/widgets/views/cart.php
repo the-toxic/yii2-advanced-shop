@@ -20,7 +20,6 @@ use yii\helpers\Url;
                     <?php
                     $product = $item->getProduct();
                     $modification = $item->getModification();
-                    $cost = $cart->getCost();
                     $url = Url::to(['/shop/catalog/product', 'id' => $product->id]);
                     ?>
                     <tr>
@@ -46,6 +45,7 @@ use yii\helpers\Url;
         </li>
         <li>
             <div>
+                <?php $cost = $cart->getCost(); ?>
                 <table class="table table-bordered">
 
                     <tr>
@@ -63,11 +63,11 @@ use yii\helpers\Url;
                         <td class="text-right"><?= PriceHelper::format($cost->getTotal()) ?></td>
                     </tr>
                 </table>
-                <p class="text-right"><a
-                        href="<?= Url::to(['/shop/cart/index']) ?>"><strong><i
-                                class="fa fa-shopping-cart"></i> View Cart</strong></a>&nbsp;&nbsp;&nbsp;<a
-                        href="/index.php?route=checkout/checkout"><strong><i
-                                class="fa fa-share"></i> Checkout</strong></a></p>
+                <p class="text-right">
+                    <a href="<?= Url::to(['/shop/cart/index']) ?>"><strong><i class="fa fa-shopping-cart"></i> View Cart</strong></a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="/index.php?route=checkout/checkout"><strong><i class="fa fa-share"></i> Checkout</strong></a>
+                </p>
             </div>
         </li>
     </ul>
