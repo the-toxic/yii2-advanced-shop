@@ -4,6 +4,7 @@
 /* @var $cart \shop\cart\Cart */
 
 use shop\helpers\PriceHelper;
+use shop\helpers\WeightHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -87,13 +88,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td class="text-right"><strong>Total:</strong></td>
                     <td class="text-right"><?= PriceHelper::format($cost->getTotal()) ?></td>
                 </tr>
+                <tr>
+                    <td class="text-right"><strong>Weight:</strong></td>
+                    <td class="text-right"><?= WeightHelper::format($cart->getWeight()) ?></td>
+                </tr>
             </table>
         </div>
     </div>
     <div class="buttons clearfix">
         <div class="pull-left"><a href="<?= Url::to('/shop/catalog/index') ?>" class="btn btn-default">Continue Shopping</a></div>
         <?php if ($cart->getItems()): ?>
-            <div class="pull-right"><a href="index.php?route=checkout/checkout" class="btn btn-primary">Checkout</a></div>
+            <div class="pull-right"><a href="<?= Url::to('/shop/checkout/index') ?>" class="btn btn-primary">Checkout</a></div>
         <?php endif; ?>
     </div>
 </div>
