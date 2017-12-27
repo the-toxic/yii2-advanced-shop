@@ -32,7 +32,8 @@
         "elasticsearch/elasticsearch": "^5.2",
         "mihaildev/yii2-ckeditor": "^1.0",
         "mihaildev/yii2-elfinder": "^1.2",
-        "wokster/yii2-translation-manager": "v1.1@dev"
+        "wokster/yii2-translation-manager": "v1.1@dev",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

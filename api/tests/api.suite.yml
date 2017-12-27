@@ -1,0 +1,11 @@
+class_name: ApiTester
+modules:
+   enabled:
+       - REST:
+           depends: PhpBrowser
+           url: 'http://api.toxic.pro'
+#           url: 'http://127.0.0.1:8080' # можно поднять свой сервак для тестов локально: php -S 127.0.0.1:8080 -t ./api/web/
+           part: [json]
+       - Yii2:
+           part: [orm, fixtures]
+           entryScript: index-test.php
