@@ -1,10 +1,8 @@
 <?php
 namespace common\rbac;
 
-use Yii;
-use yii\db\ActiveRecord;
 use yii\rbac\Assignment;
-use yii\web\IdentityInterface;
+use common\auth\Identity;
 
 class PhpManager extends \yii\rbac\PhpManager
 {
@@ -17,23 +15,30 @@ class PhpManager extends \yii\rbac\PhpManager
      * Теперь файл assignments не нужен, т.к. роли сразу пишутся в users при создании юзера
      */
 
+     /**
+     * @param int|string $userId
+     * @return array|mixed|Assignment[]
+     */
     public function getAssignments($userId)
     {
-        $user = Yii::$app->getUser();
+//        $user = Yii::$app->getUser();
 
-        /** @var IdentityInterface|ActiveRecord|null $identity */
-        $identity = $user->getIdentity();
+        /** @var Identity|null $identity */
+//        $identity = $user->getIdentity();
+        $identity = Identity::findIdentity($userId);
 
         $assignments = parent::getAssignments($userId);
 
-        $model = $userId === $user->getId()
-            ? $identity
-            : $identity::findOne($userId);
+//        $model = $userId === $user->getId()
+//            ? $identity
+//            : $identity::findOne($userId);
+        $model = $identity;
 
         if ($model) {
             $assignment = new Assignment;
             $assignment->userId = $userId;
-            $assignment->roleName = $model->{$this->roleParam};
+//            $assignment->roleName = $model->{$this->roleParam};
+            $assignment->roleName = $model->getRole($this->roleParam);
             $assignments[$assignment->roleName] = $assignment;
         }
         return $assignments;
