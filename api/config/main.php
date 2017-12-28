@@ -52,6 +52,7 @@ return [
     ],
     'components' => [
         'request' => [
+            'enableCookieValidation' => false,
             'parsers' => [
                 // парсинг json запросов в нормальный вид массивов (для корректной работы $_POST)
                 'application/json' => 'yii\web\JsonParser',
@@ -96,6 +97,13 @@ return [
                 'GET shop/products/tag/<id:\d+>' => 'shop/product/tag',
                 'GET shop/products' => 'shop/product/index',
                 'POST shop/products/<id:\d+>/wish' => 'shop/wishlist/add',
+                'POST shop/products/<id:\d+>/cart' => 'shop/cart/add',
+
+                'GET shop/cart' => 'shop/cart/index',
+                'DELETE shop/cart' => 'shop/cart/clear',
+                'PUT shop/cart/<id:\w+>/quantity' => 'shop/cart/quantity',
+                'DELETE shop/cart/<id:\w+>' => 'shop/cart/delete',
+                'POST shop/cart/checkout' => 'shop/checkout/index',
 
                 'GET shop/wishlist' => 'shop/wishlist/index',
                 'DELETE shop/wishlist/<id:\d+>' => 'shop/wishlist/delete',

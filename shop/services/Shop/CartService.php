@@ -31,6 +31,7 @@ class CartService
 
     public function set($id, $quantity): void
     {
+        if ($quantity == 0) return;
         $this->cart->set($id, $quantity);
     }
 

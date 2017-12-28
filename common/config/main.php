@@ -34,5 +34,13 @@ return [
             // заместо перекачивания файлов из vendor-a
             'linkAssets' => true,
         ],
+        'formatter' => [
+            'timeZone' => 'Europe/Astrakhan',
+//            'dateFormat' => 'php:d.m.Y',
+//            'datetimeFormat' => 'php:d.m.Y H:i:s',
+//            'decimalSeparator' => ',',
+//            'thousandSeparator' => ' ',
+            'currencyCode' => 'RUR',
+        ],
     ],
 ];
