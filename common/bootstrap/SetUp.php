@@ -3,17 +3,15 @@
 namespace common\bootstrap;
 
 use shop\cart\cost\calculator\DynamicCost;
-use shop\cart\storage\CookieStorage;
+use shop\cart\storage\HybridStorage;
 use Yii;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use shop\cart\Cart;
 use shop\cart\cost\calculator\SimpleCost;
-use shop\cart\storage\SessionStorage;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
 use yii\caching\Cache;
-use yii\di\Instance;
 use yii\mail\MailerInterface;
 use shop\services\ContactService;
 
@@ -53,11 +51,9 @@ class SetUp implements  BootstrapInterface
             $app->params['adminEmail']
         ]);
 
-        $container->setSingleton(Cart::class, function () {
+        $container->setSingleton(Cart::class, function () use ($app) {
             return new Cart(
-//                new SessionStorage('cart', \Yii::$app->session),
-                new CookieStorage('cart', 3600),
-//                new SimpleCost()
+                new HybridStorage($app->get('user'), 'cart', 3600 * 24, $app->db),
                 new DynamicCost(new SimpleCost())
             );
         });
