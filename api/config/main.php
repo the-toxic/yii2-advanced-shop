@@ -88,6 +88,17 @@ return [
             'rules' => [
                 '' => 'site/index',
                 'POST oauth2/<action:\w+>' => 'oauth2/rest/<action>',
+                'profile' => 'user/profile/index',
+
+                'GET shop/products/<id:\d+>' => 'shop/product/view',
+                'GET shop/products/category/<id:\d+>' => 'shop/product/category',
+                'GET shop/products/brand/<id:\d+>' => 'shop/product/brand',
+                'GET shop/products/tag/<id:\d+>' => 'shop/product/tag',
+                'GET shop/products' => 'shop/product/index',
+                'POST shop/products/<id:\d+>/wish' => 'shop/wishlist/add',
+
+                'GET shop/wishlist' => 'shop/wishlist/index',
+                'DELETE shop/wishlist/<id:\d+>' => 'shop/wishlist/delete',
             ],
         ],
     ],
