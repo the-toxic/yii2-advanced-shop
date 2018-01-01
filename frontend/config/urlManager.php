@@ -17,6 +17,10 @@ return [
 
         ['pattern' => 'yandex-market', 'suffix' => '.xml', 'route' => 'market/index'],
 
+        ['pattern' => 'sitemap', 'suffix' => '.xml', 'route' => 'sitemap/index'],
+        ['pattern' => 'sitemap-<target:[a-z-]+>-<start:\d+>', 'suffix' => '.xml', 'route' => 'sitemap/<target>'],
+        ['pattern' => 'sitemap-<target:[a-z-]+>', 'suffix' => '.xml', 'route' => 'sitemap/<target>'],
+
         'blog' => 'blog/post/index',
         'blog/tag/<slug:[\w\-]+>' => 'blog/post/tag',
         'blog/<id:\d+>' => 'blog/post/post',

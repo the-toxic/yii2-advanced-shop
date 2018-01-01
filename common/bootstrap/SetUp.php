@@ -21,20 +21,21 @@ class SetUp implements  BootstrapInterface
 {
     /**
      * Bootstrap method to be called during application bootstrap stage.
+     * Позволяет внедрить в объект нужные параметры (только в момент его вызова откуда-либо)
+     *
+     * Единоразовое создание сервиса с помощью контейнеров
+     * $container->setSingleton(PasswordResetService::class);
+     * или анонимной функцией, на случай если нужно передать сложные большие данные
+     * $container->setSingleton(PasswordResetService::class, function () use ($app) {
+     * return new PasswordResetService([$app->params['supportEmail'] => $app->name . ' robot']);
+     * });
+     *
      * @param Application $app the application currently running
+     * @var \yii\di\Container $container Контейнер внедрения зависимостей
      */
     public function bootstrap($app)
     {
-        // Контейнер внедрения зависимостей
         $container = Yii::$container;
-        // Позволяет внедрить в объект (только в момент его вызова откуда-либо) нужные параметры
-
-        // Единоразовое создание сервиса с помощью контейнеров
-//        $container->setSingleton(PasswordResetService::class);
-        // или анонимной функцией, на случай если нужно передать сложные большие данные
-        // $container->setSingleton(PasswordResetService::class, function () use ($app) {
-        //    return new PasswordResetService([$app->params['supportEmail'] => $app->name . ' robot']);
-        // });
 
         $container->setSingleton(Client::class, function () {
             return ClientBuilder::create()->build();
@@ -55,7 +56,7 @@ class SetUp implements  BootstrapInterface
 
         $container->setSingleton(Cart::class, function () use ($app) {
             return new Cart(
-                new HybridStorage($app->get('user'), 'cart', 3600 * 24, $app->db),
+                new HybridStorage($app->user, 'cart', 3600 * 24, $app->db),
                 new DynamicCost(new SimpleCost())
             );
         });
