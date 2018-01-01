@@ -4,6 +4,8 @@ namespace common\bootstrap;
 
 use shop\cart\cost\calculator\DynamicCost;
 use shop\cart\storage\HybridStorage;
+use shop\services\yandex\ShopInfo;
+use shop\services\yandex\YandexMarket;
 use Yii;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
@@ -57,6 +59,10 @@ class SetUp implements  BootstrapInterface
                 new DynamicCost(new SimpleCost())
             );
         });
+
+        $container->setSingleton(YandexMarket::class, [], [
+            new ShopInfo($app->name, $app->name, $app->params['frontendHostInfo']),
+        ]);
 
     }
 }
