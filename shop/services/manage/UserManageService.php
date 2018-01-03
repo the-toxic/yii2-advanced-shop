@@ -6,14 +6,17 @@ use shop\entities\User\User;
 use shop\forms\manage\User\UserCreateForm;
 use shop\forms\manage\User\UserEditForm;
 use shop\repositories\UserRepository;
+use shop\services\newsletter\Newsletter;
 
 class UserManageService
 {
     private $repository;
+    private $newsletter;
 
-    public function __construct(UserRepository $repository)
+    public function __construct(UserRepository $repository, Newsletter $newsletter)
     {
         $this->repository = $repository;
+        $this->newsletter = $newsletter;
     }
 
     public function create(UserCreateForm $form): User
@@ -26,6 +29,8 @@ class UserManageService
         );
 
         $this->repository->save($user);
+
+        $this->newsletter->subscribe($user->email);
 
         return $user;
     }
@@ -47,5 +52,6 @@ class UserManageService
     {
         $user = $this->repository->get($id);
         $this->repository->remove($user);
+        $this->newsletter->unsubscribe($user->email);
     }
 }

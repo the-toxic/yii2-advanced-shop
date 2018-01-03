@@ -70,7 +70,17 @@ return [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
-                    'logVars' => ['_GET', '_POST', '_FILES'], // $_SERVER, $_GET, $_POST, $_FILES, $_COOKIE, $_SESSION
+                    'logVars' => ['_GET', '_POST'], // $_SERVER, $_GET, $_POST, $_FILES, $_COOKIE, $_SESSION
+                ],
+            ],
+        ],
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\DbMessageSource',
+                    'forceTranslation' => true,
+                    'enableCaching' => true,
+                    'cachingDuration' => 600,
                 ],
             ],
         ],

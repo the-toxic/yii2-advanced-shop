@@ -4,6 +4,7 @@ namespace shop\services\auth;
 
 use shop\entities\User\User;
 use shop\repositories\UserRepository;
+use shop\services\newsletter\Newsletter;
 use shop\forms\auth\SignupForm;
 use yii\mail\MailerInterface;
 
@@ -11,10 +12,12 @@ class SignupService
 {
     private $mailer;
     private $users;
+    private $newsletter;
 
-    public function __construct(UserRepository $users, MailerInterface $mailer) {
+    public function __construct(UserRepository $users, MailerInterface $mailer, Newsletter $newsletter) {
         $this->mailer = $mailer;
         $this->users = $users;
+        $this->newsletter = $newsletter;
     }
 
     public function signup(SignupForm $form): void
@@ -51,5 +54,7 @@ class SignupService
         $user->confirmSignup();
 
         $this->users->save($user);
+
+        $this->newsletter->subscribe($user->email);
     }
 }
