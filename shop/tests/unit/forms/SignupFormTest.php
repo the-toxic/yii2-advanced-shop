@@ -28,6 +28,7 @@ class SignupFormTest extends Unit
         $model = new SignupForm([
             'username' => 'some_username',
             'email' => 'some_email@example.com',
+            'phone' => '77777777775',
             'password' => 'some_password',
         ]);
 

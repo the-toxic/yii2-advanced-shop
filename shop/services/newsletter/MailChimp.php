@@ -29,7 +29,9 @@ class MailChimp implements Newsletter
         $hash = $this->client->subscriberHash($email);
         $this->client->delete('lists/' . $this->listId . '/members/' . $hash);
         if ($error = $this->client->getLastError()) {
-            throw new \RuntimeException($error);
+            if (substr($error, 0, 3) === '404') {
+                \Yii::error($error);
+            } else throw new \RuntimeException($error);
         }
     }
 }

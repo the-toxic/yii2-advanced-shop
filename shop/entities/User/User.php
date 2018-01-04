@@ -18,6 +18,8 @@ use yii\db\ActiveRecord;
  * @property string $password_reset_token
  * @property string $email_confirm_token
  * @property string $email
+ * @property string $phone
+ * @property string $phone_confirmed
  * @property string $auth_key
  * @property integer $status
  * @property integer $created_at
@@ -33,12 +35,13 @@ class User extends ActiveRecord
     const STATUS_BLOCKED = -1;
     const STATUS_ACTIVE = 10;
 
-    public static function create(string $username, string $email, string $password, string $role): self
+    public static function create(string $username, string $email, string $phone, string $password, string $role): self
     {
         $user = new User();
         $user->username = $username;
         $user->role = $role;
         $user->email = $email;
+        $user->phone = $phone;
         $user->setPassword(!empty($password) ? $password : Yii::$app->security->generateRandomString());
         $user->created_at = time();
         $user->status = self::STATUS_ACTIVE;
@@ -46,19 +49,70 @@ class User extends ActiveRecord
         return $user;
     }
 
-    public function edit(string $username, string $email, string $role): void
+    public function edit(string $username, string $email, string $phone, string $role): void
     {
         $this->username = $username;
         $this->role = $role;
         $this->email = $email;
+        $this->phone = $phone;
         $this->updated_at = time();
     }
 
-    public static function requestSignup(string $username, string $email, string $password): self
+    public function editProfile(string $email, string $phone): void
+    {
+        $this->email = $email;
+        $this->phone = $phone;
+        $this->updated_at = time();
+
+        if($this->phone_confirmed && $this->isAttributeChanged('phone')) {
+            $this->phone_confirmed = 0;
+        }
+    }
+
+    public function requestConfirmPhone($phone) :void
+    {
+        if (Yii::$app->session->has('new_phone_confirm_expire')
+            && Yii::$app->session->get('new_phone_confirm_expire') > time()) {
+            throw new \DomainException('Код уже выслан', 421);
+        }
+        Yii::$app->session->set('new_phone', $phone);
+        Yii::$app->session->set('new_phone_confirm_code', random_int(10000, 99999));
+        Yii::$app->session->set('new_phone_confirm_expire', time() + 180);
+        Yii::$app->session->set('new_phone_confirm_limit', 3);
+    }
+
+    public function confirmPhone($code) :bool
+    {
+        if (!Yii::$app->session->has('new_phone'))
+            throw new \DomainException('Подтверждение номера не запрошено', 422);
+
+        if (Yii::$app->session->get('new_phone_confirm_expire') < time())
+            throw new \DomainException('Истек срок действия кода, запросите новый', 423);
+
+        if (Yii::$app->session->get('new_phone_confirm_limit') <= 0)
+            throw new \DomainException('Превышено количество попыток введения кода', 424);
+
+        if ($code == Yii::$app->session->get('new_phone_confirm_code')) {
+            $this->phone = Yii::$app->session->get('new_phone');
+            $this->phone_confirmed = 1;
+            Yii::$app->session->remove('new_phone');
+            Yii::$app->session->remove('new_phone_confirm_code');
+            Yii::$app->session->remove('new_phone_confirm_expire');
+            Yii::$app->session->remove('new_phone_confirm_limit');
+            return true;
+        }
+
+        Yii::$app->session->set('new_phone_confirm_limit', Yii::$app->session->get('new_phone_confirm_limit') - 1);
+
+        throw new \DomainException('Некорректный код', 425);
+    }
+
+    public static function requestSignup(string $username, string $email, string $phone, string $password): self
     {
         $user = new User();
         $user->username = $username;
         $user->email = $email;
+        $user->phone = $phone;
         $user->setPassword($password);
         $user->created_at = time();
         $user->status = self::STATUS_WAIT;
@@ -159,6 +213,11 @@ class User extends ActiveRecord
     public function isBlocked(): bool
     {
         return $this->status === self::STATUS_BLOCKED;
+    }
+
+    public function phoneIsConfirmed(): bool
+    {
+        return $this->phone_confirmed === 1;
     }
 
     public function getNetworks(): ActiveQuery

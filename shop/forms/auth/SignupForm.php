@@ -12,6 +12,7 @@ class SignupForm extends Model
 {
     public $username;
     public $email;
+    public $phone;
     public $password;
 
     /**
@@ -30,6 +31,9 @@ class SignupForm extends Model
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => User::class, 'message' => Yii::t('app', 'Этот email уже используется')],
+
+            ['phone', 'integer'],
+            ['phone', 'unique', 'targetClass' => User::class, 'message' => Yii::t('app', 'Этот телефон уже используется')],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],

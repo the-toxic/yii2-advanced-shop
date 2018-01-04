@@ -16,12 +16,9 @@ use yii\helpers\Url;
         <aside id="column-right" class="col-sm-3 hidden-xs">
             <div class="list-group">
                 <a href="<?= Html::encode(Url::to(['/cabinet/default/index'])) ?>" class="list-group-item">Кабинет</a>
-                <a href="<?= Html::encode(Url::to(['/cabinet/wishlist/index'])) ?>" class="list-group-item">Мне понравилось</a>
-                <a href="<?= Html::encode(Url::to(['/auth/auth/login'])) ?>" class="list-group-item">Войти</a>
-                <a href="<?= Html::encode(Url::to(['/auth/signup/request'])) ?>" class="list-group-item">Регистрация</a>
-                <a href="<?= Html::encode(Url::to(['/auth/reset/request'])) ?>" class="list-group-item">Восстановить пароль</a>
-                <a href="/account/order" class="list-group-item">Order History</a>
-                <a href="/account/newsletter" class="list-group-item">Newsletter</a>
+                <a href="<?= Html::encode(Url::to(['/cabinet/profile/edit'])) ?>" class="list-group-item">Редактировать профиль</a>
+                <a href="<?= Html::encode(Url::to(['/cabinet/order'])) ?>" class="list-group-item">Заказы</a>
+                <a href="<?= Html::encode(Url::to(['/cabinet/wishlist/index'])) ?>" class="list-group-item">Список желаний</a>
             </div>
         </aside>
     </div>

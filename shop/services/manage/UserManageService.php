@@ -24,6 +24,7 @@ class UserManageService
         $user = User::create(
             $form->username,
             $form->email,
+            $form->phone,
             $form->password,
             $form->role
         );
@@ -42,6 +43,7 @@ class UserManageService
         $user->edit(
             $form->username,
             $form->email,
+            $form->phone,
             $form->role
         );
 

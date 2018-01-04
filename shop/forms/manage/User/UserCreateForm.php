@@ -10,6 +10,7 @@ class UserCreateForm extends Model
 {
     public $username;
     public $email;
+    public $phone;
     public $password;
     public $role;
 
@@ -18,8 +19,9 @@ class UserCreateForm extends Model
         return [
             [['username', 'email', 'role'], 'required'],
             ['email', 'email'],
+            ['phone', 'integer'],
             [['username', 'email'], 'string', 'max' => 255],
-            [['username', 'email'], 'unique', 'targetClass' => User::class],
+            [['username', 'email', 'phone'], 'unique', 'targetClass' => User::class],
             ['password', 'string', 'min' => 6],
         ];
     }
