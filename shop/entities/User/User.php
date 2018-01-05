@@ -69,42 +69,10 @@ class User extends ActiveRecord
         }
     }
 
-    public function requestConfirmPhone($phone) :void
+    public function confirmPhone(string $phone): void
     {
-        if (Yii::$app->session->has('new_phone_confirm_expire')
-            && Yii::$app->session->get('new_phone_confirm_expire') > time()) {
-            throw new \DomainException('Код уже выслан', 421);
-        }
-        Yii::$app->session->set('new_phone', $phone);
-        Yii::$app->session->set('new_phone_confirm_code', random_int(10000, 99999));
-        Yii::$app->session->set('new_phone_confirm_expire', time() + 180);
-        Yii::$app->session->set('new_phone_confirm_limit', 3);
-    }
-
-    public function confirmPhone($code) :bool
-    {
-        if (!Yii::$app->session->has('new_phone'))
-            throw new \DomainException('Подтверждение номера не запрошено', 422);
-
-        if (Yii::$app->session->get('new_phone_confirm_expire') < time())
-            throw new \DomainException('Истек срок действия кода, запросите новый', 423);
-
-        if (Yii::$app->session->get('new_phone_confirm_limit') <= 0)
-            throw new \DomainException('Превышено количество попыток введения кода', 424);
-
-        if ($code == Yii::$app->session->get('new_phone_confirm_code')) {
-            $this->phone = Yii::$app->session->get('new_phone');
-            $this->phone_confirmed = 1;
-            Yii::$app->session->remove('new_phone');
-            Yii::$app->session->remove('new_phone_confirm_code');
-            Yii::$app->session->remove('new_phone_confirm_expire');
-            Yii::$app->session->remove('new_phone_confirm_limit');
-            return true;
-        }
-
-        Yii::$app->session->set('new_phone_confirm_limit', Yii::$app->session->get('new_phone_confirm_limit') - 1);
-
-        throw new \DomainException('Некорректный код', 425);
+        $this->phone = $phone;
+        $this->phone_confirmed = 1;
     }
 
     public static function requestSignup(string $username, string $email, string $phone, string $password): self
@@ -222,7 +190,7 @@ class User extends ActiveRecord
 
     public function getNetworks(): ActiveQuery
     {
-        return $this->hasMany(Network::className(), ['user_id' => 'id']);
+        return $this->hasMany(Network::class, ['user_id' => 'id']);
     }
 
     public function getWishlistItems(): ActiveQuery
@@ -239,6 +207,8 @@ class User extends ActiveRecord
     }
 
     /**
+     * Поведения. TimestampBehavior автоматически обновляет created_at & updated_ad
+     * SaveRelationsBehavior автоматически обновляет другие подключенные модели при сохранении этой
      * @inheritdoc
      */
     public function behaviors()
@@ -257,6 +227,18 @@ class User extends ActiveRecord
         return [
             self::SCENARIO_DEFAULT => self::OP_ALL,
         ];
+    }
+
+    /**
+     * Отфильтровывает поля удаляя конфиденциальную информацию из выдачи $user->toArray()
+     * Полезно при использовании REST API
+     * @return array
+     */
+    public function fields()
+    {
+        $fields = parent::fields();
+        unset($fields['auth_key'], $fields['password_hash'], $fields['password_reset_token']);
+        return $fields;
     }
 
     /**

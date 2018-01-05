@@ -8,6 +8,7 @@ use shop\services\manage\UserManageService;
 use Yii;
 use shop\entities\User\User;
 use backend\forms\UserSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -62,8 +63,12 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $dataProvider = new ActiveDataProvider(['query' => $model->getNetworks()]);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'networks' => $dataProvider,
         ]);
     }
 

@@ -46,11 +46,10 @@ class ProfileController extends Controller
         if(!Yii::$app->request->isAjax)
             throw new BadRequestHttpException('Bad request!');
 
-        $user = $this->findModel(Yii::$app->user->id);
         $post = Yii::$app->request->post();
 
         try {
-            $this->service->requestConfirmPhone($user->id, $post['phone']);
+            $this->service->requestConfirmPhone($post);
             $result = ['status' => 'ok'];
         } catch (\DomainException $e) {
             $result = ['status' => 'error','message' => $e->getMessage()];

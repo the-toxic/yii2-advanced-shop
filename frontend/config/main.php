@@ -11,8 +11,6 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'frontend\controllers',
     'bootstrap' => [
-        'log',
-        'common\bootstrap\SetUp',
         'frontend\bootstrap\SetUp',
     ],
     'aliases' => [
@@ -45,6 +43,13 @@ return [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                     'logVars' => ['_GET', '_POST'], // $_SERVER, $_GET, $_POST, $_FILES, $_COOKIE, $_SESSION
+                ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['info', 'error'],
+                    'categories' => ['sms'],
+                    'logVars' => [],
+                    'logFile' => '@frontend/runtime/logs/sms.log',
                 ],
             ],
         ],

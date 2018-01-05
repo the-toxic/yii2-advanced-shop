@@ -7,6 +7,7 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'bootstrap' => [
+        'log',
         'common\bootstrap\SetUp'
     ],
 //    'container' => [

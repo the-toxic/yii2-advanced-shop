@@ -1,12 +1,16 @@
 <?php
 
+use shop\entities\User\Network;
 use shop\helpers\UserHelper;
+use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model shop\entities\User\User */
+/* @var $networks shop\entities\User\Network */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
@@ -49,6 +53,31 @@ $this->params['breadcrumbs'][] = $this->title;
                     'updated_at:datetime',
                 ],
             ]) ?>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-body">
+            <?= GridView::widget([
+                'dataProvider' => $networks,
+                'columns' => [
+                    'id',
+                    'network',
+                    'identity',
+                    [
+                        'attribute' => 'attributes',
+                        'value' => function (Network $network) {
+                            $source = (string) $network->getAttribute('attributes');
+                            $data = json_decode($source, true);
+                            if(is_array($data)) foreach ($data as $key => &$value) {
+                                $value = "<div>{$key}: {$value}</div>";
+                            } else $data = $source;
+                            return implode('', (array) $data);
+                        },
+                        'format' => 'raw',
+                    ],
+                ],
+            ]); ?>
         </div>
     </div>
 

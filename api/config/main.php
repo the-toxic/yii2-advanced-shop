@@ -15,8 +15,6 @@ return [
     ],
     'controllerNamespace' => 'api\controllers',
     'bootstrap' => [
-        'log',
-        'common\bootstrap\SetUp',
         [
             // возврат данных в формате, запрашиваемом клиентом через заголовки request
             'class' => 'yii\filters\ContentNegotiator',

@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = 'Profile';
 
             <?php ActiveForm::end(); ?>
 
-<?php
+            <?php
 
 $js = <<<JS
     $('.requestConfirmPhoneBtn').click(function() {
@@ -68,7 +68,7 @@ $js = <<<JS
                 if (data.status === 'ok') {
                     $('.codeField').removeClass('hidden').find('.codeInput').val('').focus();
                 } else {
-                    $('.phoneInput').closest('.form-group').find('.help-block').html('<div class="alert alert-danger">'+data.message+'</div>').delay(3000).fadeOut();
+                    $('.phoneInput').closest('.form-group').find('.help-block').html('<div class="alert alert-danger">'+data.message+'</div>').delay(5000).fadeOut();
                 }
             },
             error: function(e){
@@ -99,8 +99,11 @@ $js = <<<JS
         });
     });
 JS;
-$this->registerJs($js);
-?>
+            if (!$user->phoneIsConfirmed()) {
+                $this->registerJs($js);
+            }
+            ?>
+
         </div>
     </div>
 

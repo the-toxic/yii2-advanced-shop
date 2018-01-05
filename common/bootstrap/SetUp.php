@@ -6,6 +6,8 @@ use shop\cart\cost\calculator\DynamicCost;
 use shop\cart\storage\HybridStorage;
 use shop\services\newsletter\MailChimp;
 use shop\services\newsletter\Newsletter;
+use shop\services\sms\SmsRu;
+use shop\services\sms\SmsSender;
 use shop\services\yandex\ShopInfo;
 use shop\services\yandex\YandexMarket;
 use Yii;
@@ -47,9 +49,8 @@ class SetUp implements  BootstrapInterface
             return $app->mailer;
         });
 
-        // pageUrlRule требует это
         $container->setSingleton(Cache::class, function () use ($app) {
-            return $app->cache;
+            return $app->cache; // для pageUrlRule & categoryUrlRule;
         });
 
         $container->setSingleton(ContactService::class, [], [
@@ -73,6 +74,10 @@ class SetUp implements  BootstrapInterface
                 $app->params['mailChimpListId']
             );
         });
+
+        $container->setSingleton(SmsSender::class, SmsRu::class, [
+            $app->params['smsRuKey'],
+        ]);
 
     }
 }
